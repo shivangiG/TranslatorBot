@@ -23,7 +23,7 @@ public class TranslateBot extends TelegramLongPollingBot {
 			long chatId = update.getMessage().getChatId();
 			System.out.println("msg recieved - " + txt);
 			String languageCode = AwsComprehendUtil.getLanguageCode(txt);
-			if(!languageCode.equalsIgnoreCase("en")){
+			if(!(languageCode.equalsIgnoreCase("en") || languageCode.equalsIgnoreCase("id"))){
 				String translatedTxt =   AwsTranslateUtil.translate(txt, languageCode);
 				String reply =   "<b>Translation</b> ✍️\n" + translatedTxt;
 				postMsg(chatId, reply);
